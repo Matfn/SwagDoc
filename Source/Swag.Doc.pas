@@ -160,6 +160,7 @@ const
   c_SwagBasePath = 'basePath';
   c_SwagTags = 'tags';
   c_SwagSchemes = 'schemes';
+  c_SwagSecurity = 'security';
   c_SwagSecurityDefinitions = 'securityDefinitions';
   c_SwagSecurityDefinitionsType = 'type';
   c_SwagConsumes = 'consumes';
@@ -314,7 +315,9 @@ end;
 
 procedure TSwagDoc.GenerateSwaggerJson;
 var
-  vJsonObject: TJsonObject;
+  vJsonObject, lSecurity: TJsonObject;
+  I: integer;
+  lArraySecurity: TJSONArray;
 begin
   vJsonObject := TJsonObject.Create;
 
@@ -343,8 +346,20 @@ begin
   if (fParameters.Count > 0) then
     vJsonObject.AddPair(c_SwagParameters, GenerateParametersJsonObject);
 
-  if (fSecurityDefinitions.Count > 0) then
+  if (fSecurityDefinitions.Count > 0) then begin
     vJsonObject.AddPair(c_SwagSecurityDefinitions, GenerateSecurityDefinitionsJsonObject);
+
+    lArraySecurity := TJSONArray.Create;
+
+	  for I := 0 to Pred(fSecurityDefinitions.Count) do begin
+      lSecurity := TJsonObject.Create;
+      lSecurity.AddPair(fSecurityDefinitions.Items[I].SchemeName, TJSONArray.Create);
+
+      lArraySecurity.AddElement(lSecurity);
+    end;
+
+    vJsonObject.AddPair(c_SwagSecurity, lArraySecurity);
+  end;
 
   if (fDefinitions.Count > 0) then
     vJsonObject.AddPair(c_SwagDefinitions, GenerateDefinitionsJsonObject);
