@@ -105,7 +105,7 @@
                           {
                             "type":"string",
                             "description":"The employee hire date.",
-                            "format":"yyyy-MM-dd"
+                            "format":"date"
                           }
 ,
                           "salary":
@@ -241,7 +241,7 @@
                     {
                       "type":"string",
                       "description":"The employee hire date.",
-                      "format":"yyyy-MM-dd"
+                      "format":"date"
                     }
 ,
                     "salary":
@@ -374,7 +374,7 @@
                     {
                       "type":"string",
                       "description":"The employee hire date.",
-                      "format":"yyyy-MM-dd"
+                      "format":"date"
                     }
 ,
                     "salary":
@@ -515,7 +515,7 @@
                     {
                       "type":"string",
                       "description":"The employee hire date.",
-                      "format":"yyyy-MM-dd"
+                      "format":"date"
                     }
 ,
                     "salary":
@@ -641,7 +641,7 @@
         {
           "type":"string",
           "description":"The employee hire date.",
-          "format":"yyyy-MM-dd"
+          "format":"date"
         }
 ,
         "salary":
